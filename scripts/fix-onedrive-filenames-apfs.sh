@@ -196,7 +196,7 @@ function main() {
 
 		echo "$(date +%m%d%y-%H%M)"": File system not supported, aborting." | tee -a "$fixlog"
 
-		/usr/local/jamf/bin/jamf displayMessage -message "The file system on this Mac is not supported, please upgrade to macOS High Sierra or more recent."
+		osascript -e 'tell app "Finder" to display dialog "The file system on this Mac is not supported, please upgrade to macOS High Sierra or more recent."' 
 
 		exit 0
 
@@ -231,7 +231,8 @@ function main() {
 
 		echo "$(date +%m%d%y-%H%M)"": OneDrive directory not present, aborting." | tee -a "$fixlog"
 
-		/usr/local/jamf/bin/jamf displayMessage -message "Cannot find the OneDrive folder. Ask IT to help st up OneDrive, or change the name of the folder"
+				osascript -e 'tell app "Finder" to display dialog ""' 
+ "Cannot find the OneDrive folder. Ask IT to help st up OneDrive, or change the name of the folder"
 		exit 0
 
 	fi
@@ -283,13 +284,10 @@ function main() {
 	echo "$(date +%m%d%y-%H%M)"": The OneDrive folder is using ""$afterfix_size"" KB and the file count is ""$afterfix_filecount"" after fixing filenames. Restarting OneDrive." | tee -a "$fixlog"
 
 	if [[ "$beforefix_filecount" -eq "$afterfix_filecount" ]]; then
-
-		/usr/local/jamf/bin/jamf displayMessage -message "File names have been corrected. A backup has been placed in FF-Backup-$fixdate in your user folder. The backup will be replaced the next time you correct filenames. You may also delete it, should you need more space."
+		osascript -e 'tell app "Finder" to display dialog "File names have been corrected. A backup has been placed in FF-Backup-$fixdate in your user folder. The backup will be replaced the next time you correct filenames. You may also delete it, should you need more space."'
 
 	else
-
-		/usr/local/jamf/bin/jamf displayMessage -message "Something went wrong. A backup has been placed in FF-Backup-$fixdate in your user folder. Ask IT to help restore the backup."
-
+		osascript -e 'tell app "Finder" to display dialog "Something went wrong. A backup has been placed in FF-Backup-$fixdate in your user folder. Ask IT to help restore the backup."'
 	fi
 
 }
