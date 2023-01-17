@@ -3,11 +3,12 @@ export PATH=/usr/bin:/bin:/usr/sbin:/sbin
 
 ########################################################################################################
 #
-# Jamf Self Service Script to check user's OneDrive folder for illegal
+# Self Service Script to check user's OneDrive folder for illegal
 # characters, leading or trailing spaces and corrects them to 
 # allow smooth synchronization.
 #
 # Modified by soundsnw, January 26, 2020
+# Modified by itsolver (Angus), January 17, 2023
 #
 # Important: The OneDrive folder name used in your organization 
 # needs to be specified in the script (line 171)
@@ -16,6 +17,8 @@ export PATH=/usr/bin:/bin:/usr/sbin:/sbin
 # comment out or delete line 221-228 and edit the Jamf notifications at the end.
 #
 # Changelog
+# January 17, 2023
+# - removed dependency on jamf utilty for pop up messag by switching to `osascript`
 # January 26, 2020
 # - Fixed numerical conditionals in while loops and file number comparisons, corrected quoting.
 #
